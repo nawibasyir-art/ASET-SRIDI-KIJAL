@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekod Aset Terbuka | SRIDI Kijal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #065f46;    /* Hijau Tua (Professional & Islamic) */
+            --accent: #fbbf24;     /* Kuning Emas */
+            --govt: #15803d;       /* Hijau JPINT */
+            --charity: #b45309;    /* Amber/Coklat Emas untuk Sumbangan */
+            --bg: #f0fdf4;         /* Latar belakang hijau sangat muda */
+            --text: #064e3b;
+            --white: #ffffff;
+            --card-shadow: 0 10px 15px -3px rgba(6, 78, 59, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Header --- */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(6, 78, 59, 0.05);
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent);
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 100px 5% 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--primary);
+            max-width: 900px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #374151;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .cta-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(6, 95, 70, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: #047857;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(6, 95, 70, 0.4);
+        }
+
+        /* --- Stats Section --- */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            padding: 40px 5%;
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            border-bottom: 4px solid var(--accent);
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .stat-card p {
+            color: #4b5563;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* --- Asset Section --- */
+        .inventory-section {
+            padding: 80px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .tab {
+            padding: 10px 24px;
+            border-radius: 50px;
+            background: #fef3c7;
+            color: #92400e;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid var(--accent);
+        }
+
+        .tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* --- Grid & Cards --- */
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .asset-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            transition: transform 0.3s ease;
+        }
+
+        .asset-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow);
+        }
+
+        .card-image {
+            height: 180px;
+            background-color: #f3f4f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .badge-govt { background: var(--govt); }
+        .badge-charity { background: var(--charity); }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .asset-meta {
+            font-size: 0.85rem;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+
+        .status-pill {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #ecfdf5;
+            color: #065f46;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #064e3b;
+            color: white;
+            padding: 60px 5% 30px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-links {
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            color: #9ca3af;
+            font-size: 0.8rem;
+            border-top: 1px solid #065f46;
+            padding-top: 2rem;
+        }
+
+        /* --- Responsiveness --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            header nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">SRIDI <span>KIJAL</span></div>
+        <nav>
+            <a href="#utama">Utama</a>
+            <a href="#inventori">Rekod Inventori</a>
+            <a href="#sumbangan">Info Sumbangan</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="utama">
+        <h1>Ketelusan Pengurusan Aset Pendidikan Demi Masa Depan</h1>
+        <p>Sistem Rekod Aset Terbuka SRIDI Kijal memastikan setiap peralatan dan sumbangan diuruskan dengan amanah di bawah seliaan JPINT.</p>
+        <div class="cta-group">
+            <a href="#inventori" class="btn btn-primary">Lihat Rekod Aset</a>
+        </div>
+    </section>
+
+    <div class="stats">
+        <div class="stat-card">
+            <h3>RM 250k+</h3>
+            <p>Nilai Aset JPINT</p>
+        </div>
+        <div class="stat-card">
+            <h3>RM 85k+</h3>
+            <p>Nilai Sumbangan Awam</p>
+        </div>
+        <div class="stat-card">
+            <h3>100%</h3>
+            <p>Ketelusan Rekod</p>
+        </div>
+    </div>
+
+    <section class="inventory-section" id="inventori">
+        <div class="section-header">
+            <h2>Inventori Aset Semasa</h2>
+            <p>Semakan telus bagi aset kerajaan (JPINT) dan sumbangan komuniti.</p>
+        </div>
+
+        <div class="filter-tabs">
+            <div class="tab active" onclick="filterAset('semua', this)">Semua Rekod</div>
+            <div class="tab" onclick="filterAset('kerajaan', this)">Aset JPINT</div>
+            <div class="tab" onclick="filterAset('sumbangan', this)">Aset Sumbangan</div>
+        </div>
+
+        <div class="asset-grid" id="assetContainer">
+            <!-- Aset Kerajaan 1 -->
+            <div class="asset-card" data-category="kerajaan">
+                <div class="card-image">
+                    [Imej Set Meja Pelajar]
+                    <span class="badge badge-govt">Aset JPINT</span>
+                </div>
+                <div class="card-content">
+                    <span class="status-pill">Sedia Digunakan</span>
+                    <h4>Set Meja & Kerusi Ergonomik</h4>
+                    <div class="asset-meta">
+                        ID: SRIDI/KJL/AS-102<br>
+                        Sumber: Peruntukan JPINT<br>
+                        Lokasi: Bilik Darjah
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aset Sumbangan 1 -->
+            <div class="asset-card" data-category="sumbangan">
+                <div class="card-image">
+                    [Imej Penapis Air]
+                    <span class="badge badge-charity">Aset Sumbangan</span>
+                </div>
+                <div class="card-content">
+                    <span class="status-pill">Penyelenggaraan Berjadual</span>
+                    <h4>Penapis Air Komuniti (PIBG)</h4>
+                    <div class="asset-meta">
+                        Penyumbang: PIBG SRIDI Kijal<br>
+                        Lokasi: Kantin Sekolah
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aset Kerajaan 2 -->
+            <div class="asset-card" data-category="kerajaan">
+                <div class="card-image">
+                    [Imej Laptop Makmal]
+                    <span class="badge badge-govt">Aset JPINT</span>
+                </div>
+                <div class="card-content">
+                    <span class="status-pill">Aktif</span>
+                    <h4>Laptop Pendidikan JPINT</h4>
+                    <div class="asset-meta">
+                        ID: SRIDI/KJL/COMP-40<br>
+                        Sumber: Inisiatif Digital JPINT<br>
+                        Lokasi: Makmal Komputer
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aset Sumbangan 2 -->
+            <div class="asset-card" data-category="sumbangan">
+                <div class="card-image">
+                    [Imej Loker Pelajar]
+                    <span class="badge badge-charity">Aset Sumbangan</span>
+                </div>
+                <div class="card-content">
+                    <span class="status-pill">Tersedia</span>
+                    <h4>Loker Peribadi Pelajar</h4>
+                    <div class="asset-meta">
+                        Penyumbang: Hamba Allah (2023)<br>
+                        Lokasi: Laluan Utama Blok A
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">SRIDI KIJAL</div>
+        <div class="footer-links">
+            <a href="#">Jabatan Pendidikan Islam Negeri Terengganu (JPINT)</a>
+            <a href="#">Laporan Inventori</a>
+            <a href="#">Hubungi Pentadbiran</a>
+        </div>
+        <p class="copyright">
+            &copy; 2024 Sekolah Rendah Islam Darul Iman (SRIDI) Kijal. <br>
+            Aset Diperkasa, Pendidikan Diberkati.
+        </p>
+    </footer>
+
+    <script>
+        function filterAset(category, element) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            element.classList.add('active');
+
+            const cards = document.querySelectorAll('.asset-card');
+            cards.forEach(card => {
+                if (category === 'semua') {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.5s forwards';
+                } else {
+                    if (card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                        card.style.animation = 'fadeIn 0.5s forwards';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
